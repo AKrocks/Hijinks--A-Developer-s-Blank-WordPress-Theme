@@ -76,3 +76,17 @@ function pollo_frito_get_the_author_posts_link() {
   );
   return $link;
 }
+
+// Remove the <div> surrounding the dynamic navigation to cleanup markup
+function my_wp_nav_menu_args( $args = '' ) {
+	$args['container'] = false;
+	return $args;
+}
+// Remove Injected classes, ID's and Page ID's from Navigation <li> items
+function my_css_attributes_filter( $var ) {
+	return is_array( $var ) ? array() : '';
+}
+// Remove invalid rel attribute values in the categorylist
+function remove_category_rel_from_category_list( $thelist ) {
+	return str_replace( 'rel="category tag"', 'rel="tag"', $thelist );
+}
