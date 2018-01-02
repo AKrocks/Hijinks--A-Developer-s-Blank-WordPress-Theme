@@ -1,6 +1,6 @@
 <?php
-// Add <body> classes
 
+// Add <body> classes
 function add_page_slug( $classes ) {
 	// Add page slug if it doesn't exist
 	if ( is_single() || is_page() && ! is_front_page() ) {
@@ -32,31 +32,8 @@ add_filter( 'nav_menu_css_class', 'custom_wp_nav_menu' );
 add_filter( 'nav_menu_item_id', 'custom_wp_nav_menu' );
 add_filter( 'page_css_class', 'custom_wp_nav_menu' );
 
-// Replaces "current-menu-item" with "active"
-function current_to_active( $text ) {
-	$replace = array(
-		// List of menu item classes that should be changed to "active"
-		'current_page_item'     => 'active',
-		'current_page_parent'   => 'active',
-		'current_page_ancestor' => 'active',
-	);
-	$text    = str_replace( array_keys( $replace ), $replace, $text );
-
-	return $text;
-}
-
-add_filter( 'wp_nav_menu', 'current_to_active' );
-
-// Deletes empty classes and removes the sub menu class
-function strip_empty_classes( $menu ) {
-	$menu = preg_replace( '/ class=""| class="sub-menu"/', '', $menu );
-
-	return $menu;
-}
-
-add_filter( 'wp_nav_menu', 'strip_empty_classes' );
-
 // Returns number of search results with value
+
 function title_search_results() {
 	global $wp_query;
 	$resutls     = $wp_query->found_posts;
@@ -78,102 +55,70 @@ add_filter( 'gform_confirmation_anchor', '__return_true' );
 // Add the ability to hide labels but still be used with screen reader. 
 add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
 
-// Add SVG Upload Support
+
+// ******************* Add Custom Excerpt Lengths ****************** //
+
+function wpe_excerptlength_index($length) {
+	return 160;
+}
+function wpe_excerptmore($more) {
+	return '...<a href="'. get_permalink().'">Read More ></a>';
+}
+
+function wpe_excerpt($length_callback='', $more_callback='') {
+	global $post;
+	if(function_exists($length_callback)){
+		add_filter('excerpt_length', $length_callback);
+	}
+	if(function_exists($more_callback)){
+		add_filter('excerpt_more', $more_callback);
+	}
+	$output = get_the_excerpt();
+	$output = apply_filters('wptexturize', $output);
+	$output = apply_filters('convert_chars', $output);
+	$output = '<p>'.$output.'</p>';
+	echo $output;
+}
+
+// ******************* ACF Options Page ****************** //
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
+}
+
+// ******************* Add SVG Upload Support ****************** //
+
 function wpcontent_svg_mime_type( $mimes = array() ) {
 	$mimes['svg']  = 'image/svg+xml';
 	$mimes['svgz'] = 'image/svg+xml';
-
 	return $mimes;
 }
-
 add_filter( 'upload_mimes', 'wpcontent_svg_mime_type' );
 
+add_filter( 'wp_get_attachment_image_src', 'fix_wp_get_attachment_image_svg', 10, 4 );  /* the hook */
 
-/**
- * ACF Options Page
- *
- */
-function ea_acf_options_page() {
-	if ( function_exists( 'acf_add_options_page' ) ) {
-		acf_add_options_page( array(
-			'title'      => 'Site Options',
-			'capability' => 'manage_options',
-		) );
+function fix_wp_get_attachment_image_svg($image, $attachment_id, $size, $icon) {
+	if (is_array($image) && preg_match('/\.svg$/i', $image[0]) && $image[1] <= 1) {
+		if(is_array($size)) {
+			$image[1] = $size[0];
+			$image[2] = $size[1];
+		} elseif(($xml = simplexml_load_file($image[0])) !== false) {
+			$attr = $xml->attributes();
+			$viewbox = explode(' ', $attr->viewBox);
+			$image[1] = isset($attr->width) && preg_match('/\d+/', $attr->width, $value) ? (int) $value[0] : (count($viewbox) == 4 ? (int) $viewbox[2] : null);
+			$image[2] = isset($attr->height) && preg_match('/\d+/', $attr->height, $value) ? (int) $value[0] : (count($viewbox) == 4 ? (int) $viewbox[3] : null);
+		} else {
+			$image[1] = $image[2] = null;
+		}
 	}
+	return $image;
 }
-add_action( 'init', 'ea_acf_options_page' );
-
-function allowed_html() {
-
-	$allowed_tags = array(
-		'a' => array(
-			'class' => array(),
-			'href'  => array(),
-			'rel'   => array(),
-			'title' => array(),
-		),
-		'abbr' => array(
-			'title' => array(),
-		),
-		'b' => array(),
-		'blockquote' => array(
-			'cite'  => array(),
-		),
-		'cite' => array(
-			'title' => array(),
-		),
-		'code' => array(),
-		'del' => array(
-			'datetime' => array(),
-			'title' => array(),
-		),
-		'dd' => array(),
-		'div' => array(
-			'class' => array(),
-			'title' => array(),
-			'style' => array(),
-		),
-		'dl' => array(),
-		'dt' => array(),
-		'em' => array(),
-		'h1' => array(),
-		'h2' => array(),
-		'h3' => array(),
-		'h4' => array(),
-		'h5' => array(),
-		'h6' => array(),
-		'i' => array(),
-		'img' => array(
-			'alt'    => array(),
-			'class'  => array(),
-			'height' => array(),
-			'src'    => array(),
-			'width'  => array(),
-		),
-		'li' => array(
-			'class' => array(),
-		),
-		'ol' => array(
-			'class' => array(),
-		),
-		'p' => array(
-			'class' => array(),
-		),
-		'q' => array(
-			'cite' => array(),
-			'title' => array(),
-		),
-		'span' => array(
-			'class' => array(),
-			'title' => array(),
-			'style' => array(),
-		),
-		'strike' => array(),
-		'strong' => array(),
-		'ul' => array(
-			'class' => array(),
-		),
-	);
-
-	return $allowed_tags;
-}
+?>
