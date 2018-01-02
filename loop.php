@@ -34,7 +34,7 @@
 			} ?></span>
         <!-- /post details -->
 
-		<?php html5wp_excerpt( 'html5wp_index' ); // Build your custom callback length in functions.php. ?>
+		<?php wpe_excerptlength_index( 'almita' ); // Build your custom callback length in functions.php. ?>
 
 		<?php edit_post_link(); ?>
 
