@@ -29,8 +29,8 @@
             <span class="accessibility">Menu</span>
         </a>
 
-        <nav><?php wp_nav_menu( array( 'menu'      => 'Main',
-		                               'container' => false,
-			) ); ?></nav>
+        <nav class="nav" role="navigation">
+		    <?php html5blank_nav(); ?>
+        </nav>
     </div>
 </header>
