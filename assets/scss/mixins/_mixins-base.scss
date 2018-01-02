@@ -1,0 +1,72 @@
+// Breakpoints
+@mixin breakpoint($name) {
+      @if map-has-key($breakpoints, $name) {
+        @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+  @else {
+    @warn "Couldn't find a breakpoint named `#{$name}`.";
+  }
+}
+
+$breakpoints: (
+        'tinymax': (max-width: 31.24em), /* Small screens up to 500px */
+        'smallmax': (max-width: 47.9em), /* Small screens up to 500px */
+        'largemax': (max-width: 68.74em), /* Small screens up to 500px */
+        'tiny': (min-width: 31.25em), /* Small screens about 500px */
+        'small': (min-width: 48em), /* About 768px */
+        'medium': (min-width: 56.25em), /* about 900px */
+        'large': (min-width: 68.75em), /* about 1100px */
+        'huge': (min-height: 81.25em) /* about 1300px */
+);
+
+@include breakpoint(tinymax) {
+  .mobile-down {
+    display: none !important;
+  }
+}
+
+@include breakpoint(large) {
+  .large-down {
+    display: none !important;
+  }
+}
+
+@include breakpoint(largemax) {
+  .large-up {
+    display: none !important;
+  }
+}
+
+// Font size in Rem
+@mixin font-size($size: 12, $base: 16) {
+  font-size: $size + px; // fallback for old browsers
+  font-size: ($size / $base) * 1rem;
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+// Line hieght with fallback
+@mixin line-height($heightValue: 12 ){
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: (0.125 * $heightValue) + rem;
+}
+

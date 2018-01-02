@@ -1,0 +1,121 @@
+body {
+  line-height: $global-lineheight;
+  font-family: $body-font-family;
+  -webkit-font-smoothing: antialiased;
+  color: $primery-color;
+
+}
+
+h1,h2,h3 {
+  font-family: $body-font-family;
+  color: $primery-color;
+  margin: 0;
+  margin-bottom: 0.3em;
+}
+
+h1 {
+  @include font-size(32);
+  line-height: 1.1;
+  @include breakpoint(small) {
+    @include font-size(45);
+  }
+}
+
+h2 {
+  @include font-size(26);
+  @include breakpoint(small) {
+    @include font-size(32);
+  }
+}
+
+h3 {
+  @include font-size(21);
+  &.tumbnail-title {
+    margin: 0.3em 0;
+    @include font-size(18);
+    line-height: 1.45;
+  }
+}
+
+p {
+  @include font-size(17.5);
+  @include breakpoint(small) {
+    @include font-size(21);
+  }
+}
+
+.section-title {
+  @include font-size(22);
+}
+
+.post-title {
+  @include font-size(18);
+}
+
+.sub-title {
+  @include font-size(22);
+}
+
+.small-title {
+  @include font-size(18);
+  font-weight: 400;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+p + blockquote {
+  margin-top: -20px;
+}
+
+blockquote {
+  margin: 0 1.5rem;
+}
+
+address {
+  margin: 0 0 1.5rem;
+}
+
+pre {
+  background: #ddd;
+  @include font-size(0.9375);
+  line-height: 1.2;
+  margin-bottom: 1.6rem;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6rem;
+}
+
+code,
+kbd,
+tt,
+var {
+  @include font-size(0.9375);
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+
+mark,
+ins {
+  background: #ddd;
+  text-decoration: none;
+}
+
+big {
+  font-size: 125%;
+}
+
+blockquote,
+q {
+  text-align: left;
+  position: relative;
+  margin: 0 auto 0 60px;
+}

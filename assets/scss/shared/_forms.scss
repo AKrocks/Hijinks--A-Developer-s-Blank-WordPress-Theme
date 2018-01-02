@@ -1,0 +1,69 @@
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+  color: $primery-color;
+  border: 0;
+  border-radius: 0;
+  background-color: $input-color;
+  &:focus {
+    color: #000;
+  }
+}
+
+select {
+  border: 1px solid $color__border-input;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"] {
+  padding: 0 5px;
+  font-weight: 400;
+}
+
+textarea {
+  padding-left: 3px;
+  width: 100%;
+}
+
+// Gravity forms fix
+@media only screen and (min-width: 641px) {
+  body .gform_wrapper textarea.medium {
+    width: calc(50% - 8px);
+  }
+}
+
+.gform_wrapper .top_label .gfield_label {
+  color: #ada8a8;
+  text-transform: uppercase;
+}
+
+// Ugly Fix for Gforms more margin top
+body .gform_wrapper ul li.gfield {
+  margin-top: 20px!important;
+}

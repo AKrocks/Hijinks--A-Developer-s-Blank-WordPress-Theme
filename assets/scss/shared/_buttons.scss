@@ -1,0 +1,25 @@
+.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-transition: all 0.3s;
+  @include font-size(18);
+  background-color: $primery-color;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 1px;
+  outline: none;
+  overflow: hidden;
+  padding: 0.3em 1.1em;
+  position: relative;
+  font-weight: bold;
+  font-family: $body-font-family;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+
+

@@ -1,0 +1,15 @@
+a {
+	color: $primery-color;
+	&:hover,
+	&:focus,
+	&:active {
+		color: #000;
+	}
+	&:focus {
+		outline: thin dotted;
+	}
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}

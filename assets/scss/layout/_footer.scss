@@ -1,0 +1,115 @@
+.site-footer {
+  background-color: $primery-color;
+  padding: 30px 0;
+  color: #fff;
+  margin-top: auto;
+  .gform_confirmation_wrapper {
+    text-align: center;
+  }
+}
+
+#gform_3 {
+  @include breakpoint(small) {
+    display: flex;
+    flex-flow: wrap;
+  }
+  max-width: 700px;
+  margin: 0 auto;
+  .gform_body {
+    flex: 0 1 560px;
+  }
+  .gform_footer {
+    flex: 1;
+    position: relative;
+  }
+  .gform_heading {
+    flex: 100%;
+    margin: 0;
+    text-align: center;
+    span.gform_description {
+      font-weight: 600;
+      @include font-size(22);
+      color: #fff;
+    }
+  }
+  input[type="email"], input[type="text"] {
+    background: $input-color;
+    height: 38px;
+    border: 0;
+  }
+  input[type="submit"] {
+    @include breakpoint(small) {
+      position: absolute;
+      bottom: 0;
+    }
+    height: 38px;
+    width: 116px;
+  }
+  .gfield_label {
+    color: #fff;
+  }
+  div.validation_error {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: 16px 0;
+    clear: both;
+    width: 100%;
+    text-align: center;
+  }
+  li.gfield.gfield_error {
+    background-color: transparent;
+    @include breakpoint(small) {
+      margin-bottom: -2px !important;
+    }
+    border-top: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  li.gfield.gfield_error.gfield_contains_required {
+    padding-right: 16px;
+  }
+  .validation_message {
+    color: #fff;
+    position: absolute;
+  }
+}
+
+.gform_wrapper #gform_3 .gfield_required {
+  color: #fff;
+}
+
+#gform_fields_3 {
+  @include breakpoint(small) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    > li {
+      flex: 100%;
+    }
+  }
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  margin-bottom: 0;
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+  a {
+    margin: 0 7px;
+    &:hover {
+      svg {
+        -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+        animation: heartbeat 1.5s ease-in-out infinite both;
+      }
+    }
+  }
+}

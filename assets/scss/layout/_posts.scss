@@ -1,0 +1,48 @@
+.page-wrap {
+  margin-bottom: 60px;
+}
+.sticky {
+  display: block;
+}
+
+.hentry {
+  margin: 0 0 1.5em;
+}
+
+.byline,
+.updated:not(.published) {
+  display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+  display: inline;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5em 0 0;
+}
+
+.entry-title {
+  a {
+    text-decoration: none;
+  }
+}
+
+.blog {
+  .post-listing {
+    a {
+      text-decoration: none;
+    }
+    .small-title {
+      margin-bottom: 5px;
+      text-decoration: underline;
+    }
+  }
+}
+
+.wp-pagenavi a, .wp-pagenavi span {
+  border: 0;
+}

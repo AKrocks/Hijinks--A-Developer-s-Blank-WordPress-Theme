@@ -1,0 +1,116 @@
+.site-header {
+  background: $header-color;
+  > .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+    background-color: #002651;
+  }
+  .icon-search {
+    margin-top: 18px;
+    color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  button {
+    margin-top: 5px;
+  }
+}
+.site-title {
+  font-family: $secondary-font-family;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  @include font-size(20);
+  @include breakpoint(large) {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  a {
+    @include font-size(20);
+    @include breakpoint(large) {
+      @include font-size(32);
+    }
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+#js-modal-page {
+  position: relative;
+}
+
+.open-subscribe {
+  margin-top: 15px;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.search-wrap {
+  position: absolute !important;
+  //clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 127px;
+  width: 100%;
+  word-wrap: normal;
+  background: #002650;
+  z-index: 10;
+  outline:0;
+  // Transform, default 'hidden'
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+  transition: 0.2s linear all;
+
+  &.active,&:active,&:focus {
+    //clip: auto;
+    overflow: visible;
+    // Active, transform top
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .wrap {
+    text-align: center;
+    border-top: 1px solid $button-main;
+  }
+  form {
+    padding: 3rem 0;
+    input[type="search"] {
+      border-radius: 5px;
+      padding: 0.3em 3em 0.3em 1em;
+    }
+  }
+  .close-button {
+    float: right;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    background-color: transparent;
+    &:hover {
+      color: $light-blue;
+    }
+  }
+}
+
+.featured-hero {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  position: relative;
+  background-position: 50% 0;
+  @include breakpoint(small) {
+    height: 380px;
+  }
+  &:empty {
+    display: none;
+  }
+}
