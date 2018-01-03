@@ -17,7 +17,7 @@
 
 <!--Header-->
 
-<header>
+<header class="site-header">
     <div class="container">
         <a class="logo" href="<?php bloginfo( 'url' ); ?>"><img
                     src="<?php bloginfo( 'template_url' ); ?>/svgs/logo.svg"
