@@ -1,47 +1,14 @@
-#top-menu {
-  display: flex;
-  margin: 0;
-  li {
-    display: flex;
-    &:hover, &.active, &Lfocus {
-      background-color: $dark-blue;
-    }
-  }
-  a {
-    color: #fff;
-    margin: 2rem 1rem 1rem;
-    @include font-size(18);
-    @include breakpoint(large) {
-      margin: 3.3rem 1rem 1.5rem;
-    }
+.mobile-menu {
+  @include breakpoint(medium) {
+    display: none;
   }
 }
 
-.pushy {
-  #top-menu-mobile {
-    flex-direction: column;
-    margin: 0;
-    a {
-      color: $primery-color;
-      font-weight: 600;
-      margin: 0 1rem 0 2rem;
-      padding: 1rem 0;
-      text-transform: uppercase;
-    }
-
-    li.active, li:hover {
-      background-color: $primery-color;
-      a {
-        color: #fff;
-      }
-    }
-  }
-  .site-title {
-    margin: 15px 6px 0;
-    a {
-      color: $primery-color;
-      margin: 0;
-      padding: 10px 5px 10px;
-    }
+.header-nav {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 }

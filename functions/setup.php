@@ -8,6 +8,21 @@ function ak_theme_setup() {
 	// Enable plugins to manage the document title
 	add_theme_support( 'title-tag' );
 
+	// Adds custom logo
+	add_theme_support( 'custom-logo' );
+
+	function ak_custom_logo_setup() {
+		$defaults = array(
+			'height'      => 100,
+			'width'       => 200,
+			'flex-height' => false,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		);
+		add_theme_support( 'custom-logo', $defaults );
+	}
+	add_action( 'after_setup_theme', 'ak_custom_logo_setup' );
+
 	// Register wp_nav_menu() menus
 	register_nav_menus( [
 		'primary_navigation' => __( 'Primary Navigation', 'almita' ),
@@ -17,9 +32,9 @@ function ak_theme_setup() {
 	function html5blank_nav() {
 		wp_nav_menu(
 			array(
-				'theme_location'  => 'header-menu',
+				'theme_location'  => 'primary_navigation',
 				'menu'            => '',
-				'container'       => 'div',
+				'container'       => false,
 				'container_class' => 'menu-{menu slug}-container',
 				'container_id'    => '',
 				'menu_class'      => 'menu',

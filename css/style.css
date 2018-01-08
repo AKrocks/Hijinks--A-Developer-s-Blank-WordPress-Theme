@@ -756,42 +756,15 @@ table th {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-#top-menu {
+@media (min-width: 56.25em) {
+  .mobile-menu {
+    display: none; } }
+
+.header-nav ul {
   display: flex;
-  margin: 0; }
-  #top-menu li {
-    display: flex; }
-    #top-menu li:hover, #top-menu li.active, #top-menu liLfocus {
-      background-color: #031c3c; }
-  #top-menu a {
-    color: #fff;
-    margin: 2rem 1rem 1rem;
-    font-size: 18px;
-    font-size: 1.125rem; }
-    @media (min-width: 68.75em) {
-      #top-menu a {
-        margin: 3.3rem 1rem 1.5rem; } }
-
-.pushy #top-menu-mobile {
-  flex-direction: column;
-  margin: 0; }
-  .pushy #top-menu-mobile a {
-    color: #00264f;
-    font-weight: 600;
-    margin: 0 1rem 0 2rem;
-    padding: 1rem 0;
-    text-transform: uppercase; }
-  .pushy #top-menu-mobile li.active, .pushy #top-menu-mobile li:hover {
-    background-color: #00264f; }
-    .pushy #top-menu-mobile li.active a, .pushy #top-menu-mobile li:hover a {
-      color: #fff; }
-
-.pushy .site-title {
-  margin: 15px 6px 0; }
-  .pushy .site-title a {
-    color: #00264f;
-    margin: 0;
-    padding: 10px 5px 10px; }
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; }
 
 /*--------------------------------------------------------------
 # Links
@@ -808,9 +781,6 @@ a {
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-html {
-  box-sizing: border-box; }
-
 *,
 *:before,
 *:after {
@@ -820,6 +790,23 @@ html {
 /*--------------------------------------------------------------
 ## Header Style 
 --------------------------------------------------------------*/
+.site-header {
+  background-color: #00264f; }
+  .site-header .container {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    position: relative; }
+  .site-header a {
+    color: #fff; }
+  .site-header .header-nav {
+    display: flex;
+    align-items: center;
+    width: 40%; }
+
+.custom-logo-link img {
+  max-width: 200px; }
+
 /*--------------------------------------------------------------
 ## Footer Style 
 --------------------------------------------------------------*/

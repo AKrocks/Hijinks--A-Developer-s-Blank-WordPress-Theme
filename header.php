@@ -19,9 +19,11 @@
 
 <header class="site-header">
     <div class="container">
-        <a class="logo" href="<?php bloginfo( 'url' ); ?>"><img
-                    src="<?php bloginfo( 'template_url' ); ?>/svgs/logo.svg"
-                    alt="<?php bloginfo( 'title' ); ?>"/></a>
+		<?php
+		if ( function_exists( 'the_custom_logo' ) ) {
+			the_custom_logo();
+		}
+		?>
 
         <a class="mobile-menu" href="#">
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -29,8 +31,8 @@
             <span class="accessibility">Menu</span>
         </a>
 
-        <nav class="nav" role="navigation">
-		    <?php html5blank_nav(); ?>
+        <nav class="header-nav nav" role="navigation">
+			<?php html5blank_nav(); ?>
         </nav>
     </div>
 </header>
